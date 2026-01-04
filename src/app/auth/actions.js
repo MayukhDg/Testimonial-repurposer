@@ -41,7 +41,8 @@ export async function signup(formData) {
     })
 
     if (error) {
-        redirect('/auth/signup?error=Could not create user')
+        console.error("Signup error:", error)
+        redirect(`/auth/signup?error=${encodeURIComponent(error.message)}`)
     }
 
     revalidatePath('/', 'layout')
